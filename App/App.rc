@@ -1,0 +1,164 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "Core/Public/Util/resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Fran�ais (Canada) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRC)
+LANGUAGE LANG_FRENCH, SUBLANG_FRENCH_CANADIAN
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_PETITMOTEUR3D       ICON                    "PetitMoteur3D.ico"
+IDI_SMALL               ICON                    "small.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDC_PETITMOTEUR3D MENU
+BEGIN
+    POPUP "&Fichier"
+    BEGIN
+        MENUITEM "&Quitter",                    IDM_EXIT
+    END
+    POPUP "&?"
+    BEGIN
+        MENUITEM "&� propos de ...",            IDM_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDC_PETITMOTEUR3D ACCELERATORS
+BEGIN
+    "?",            IDM_ABOUT,              ASCII,  ALT
+    "/",            IDM_ABOUT,              ASCII,  ALT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG 22, 17, 230, 75
+STYLE DS_SETFONT | DS_MODALFRAME | WS_CAPTION | WS_SYSMENU
+CAPTION "� propos de"
+FONT 8, "System"
+BEGIN
+    ICON            IDI_PETITMOTEUR3D,IDC_MYICON,14,9,16,16
+    LTEXT           "PetitMoteur3D version�1.0",IDC_STATIC,49,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2007",IDC_STATIC,49,20,119,8
+    DEFPUSHBUTTON   "OK",IDOK,195,6,30,11,WS_GROUP
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDS_APP_TITLE           "Window"
+    DXE_ERREURCREATIONDEVICE "Erreur dans la cr�ation du dispositif"
+    DXE_ERREUROBTENTIONBUFFER 
+                            "Erreur dans l'obtention du tampon d'arri�re plan"
+    DXE_ERREURCREATIONRENDERTARGET 
+                            "Erreur dans la cr�ation du render target view"
+    DXE_CREATION_VS         "Erreur de cr�ation du vertex shader"
+    DXE_FICHIER_VS          "Erreur chargement ou compilation du VS"
+    IDC_PETITMOTEUR3D       "PETITMOTEUR3D"
+    DXE_CREATION_PS         "Erreur de cr�ation du PS"
+    DXE_FICHIER_PS          "Erreur chargement ou compilation du PS"
+    DXE_ERREURCREATION_FX   "Erreur de cr�ation du fichier FX"
+    DXE_FICHIERTEXTUREINTROUVABLE
+                            "Fichier de texture introuvable"
+    ERREUR_CREATION_DIRECTINPUT "Erreur de cr�ation de DirectInput"
+    ERREUR_CREATION_CLAVIER "Erreur de cr�ation du clavier"
+    ERREUR_CREATION_FORMAT_CLAVIER "Erreur de cr�ation du format du clavier"
+    ERREUR_CREATION_SOURIS "Erreur de cr�ation de la souris"
+    ERREUR_CREATION_FORMAT_SOURIS "Erreur de cr�ation du format de la souris"
+    ERREUR_CREATION_JOYSTICK "Erreur de cr�ation du joystick"
+    ERREUR_CREATION_FORMAT_JOYSTICK "Erreur de cr�ation du format du joystick"
+END
+
+STRINGTABLE
+BEGIN
+    DXE_CREATIONVERTEXBUFFER "Erreur de cr�ation du vertex buffer"
+    DXE_CREATIONINDEXBUFFER "Erreur de cr�ation de l'index buffer"
+    DXE_CREATIONLAYOUT      "Erreur de cr�ation du layout"
+    DXE_ERREURCREATIONTEXTURE "Erreur de cr�ation de texture"
+    DXE_ERREURCREATIONDEPTHSTENCILTARGET 
+                            "Erreur de cr�ation du depth stencil view"
+    DXE_ERREURCREATION_BLENDSTATE "Erreur de cr�ation du blend state"
+END
+
+#endif    // Fran�ais (Canada) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

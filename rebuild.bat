@@ -1,0 +1,1 @@
+cmake -DCMAKE_PREFIX_PATH="%cd:\=\\%\\libtorch" -DCUDA_TOOLKIT_ROOT_DIR="%CUDA_PATH:\=\\%" -S . -B build
