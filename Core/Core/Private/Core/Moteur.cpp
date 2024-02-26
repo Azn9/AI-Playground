@@ -122,6 +122,12 @@ int PM3D::CMoteur::Initialisations()
 
     // * Initialisation du dispositif de rendu
     pDispositif = CreationDispositifSpecific(CDS_FENETRE);
+    if (!pDispositif)
+    {
+        return 1;
+    }
+
+    gameHost->SetDispositif(pDispositif);
 
     //Resize(1280, 720);
     //ResizeWindow(1280, 720);

@@ -42,6 +42,7 @@ target_include_directories(Game PRIVATE
     ${CMAKE_SOURCE_DIR}/libs/physx_include
     ${CMAKE_SOURCE_DIR}/Core
     ${CMAKE_SOURCE_DIR}/Api
+    ${CMAKE_SOURCE_DIR}/AI
 )
 
 link_directories(${CMAKE_SOURCE_DIR}/lib)

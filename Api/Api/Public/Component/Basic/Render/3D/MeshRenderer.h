@@ -58,6 +58,8 @@ namespace PM3D_API
         PM3D::IChargeur* getChargeur() const { return chargeur; }
 
         void SetIgnoreCulling(bool b) { ignoreCulling = b; }
+        
+        void SetCustomColor(DirectX::XMFLOAT3 customColor) { this->customColor = customColor; }
 
     protected:
         void LoadMesh();
@@ -76,5 +78,7 @@ namespace PM3D_API
         float boundingRadius = 0.f;
 
         bool ignoreCulling = false;
+
+        DirectX::XMFLOAT3 customColor = DirectX::XMFLOAT3(1.f, 1.f, 1.f);
     };
 }

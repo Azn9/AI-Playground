@@ -138,11 +138,27 @@ void PM3D_API::MeshRenderer::DrawSelf() const
         }
 
         const auto material = Material[SubmeshMaterialIndex[i]];
+
+        auto materialAmbiant = material.Ambient;
+        materialAmbiant.x *= customColor.x;
+        materialAmbiant.y *= customColor.y;
+        materialAmbiant.z *= customColor.z;
+
+        auto materialDiffuse = material.Diffuse;
+        materialDiffuse.x *= customColor.x;
+        materialDiffuse.y *= customColor.y;
+        materialDiffuse.z *= customColor.z;
+
+        auto materialSpecular = material.Specular;
+        materialSpecular.x *= customColor.x;
+        materialSpecular.y *= customColor.y;
+        materialSpecular.z *= customColor.z;
+        
         shader->ApplyMaterialParameters(
             shaderParameters,
-            XMLoadFloat4(&material.Ambient),
-            XMLoadFloat4(&material.Diffuse),
-            XMLoadFloat4(&material.Specular),
+            XMLoadFloat4(&materialAmbiant),
+            XMLoadFloat4(&materialDiffuse),
+            XMLoadFloat4(&materialSpecular),
             material.Puissance,
             material.pAlbedoTexture,
             material.pNormalmapTexture

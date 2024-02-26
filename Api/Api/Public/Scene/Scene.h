@@ -49,6 +49,10 @@ namespace PM3D_API
 
         virtual void InitializeUI();
 
+        virtual void PostInitialize()
+        {
+        }
+
         template <typename L, template_extends<Light, L>  = 0>
         void AddLight(std::unique_ptr<L>&& child);
 

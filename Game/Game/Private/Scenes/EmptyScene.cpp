@@ -1,10 +1,10 @@
 ﻿#include "Game/Public/Scenes/EmptyScene.h"
-#include <torch/torch.h>
+
+#include "Api/Public/GameHost.h"
+#include "Game/Public/Experiments/1_GoToGoal/GoToGoalScene.h"
 
 void EmptyScene::Initialize()
 {
-    const auto tensor = torch::rand({2, 3});
-    std::cout << tensor << std::endl;
 }
 
 void EmptyScene::InitializePhysics()
@@ -25,4 +25,23 @@ void EmptyScene::InitializeObjects()
 
 void EmptyScene::InitializeUI()
 {
+}
+
+void EmptyScene::DrawSelf() const
+{
+    ImGui::Begin("Experiments");
+
+    Scene* scenePtr = nullptr;
+    if (ImGui::Button("1- GoToGoal"))
+    {
+        scenePtr = GoToGoalScene::GetInstancePtr();
+    }
+
+    if (scenePtr)
+    {
+        scenePtr->Initialize();
+        PM3D_API::GameHost::GetInstance()->SetScene(scenePtr);
+    }
+
+    ImGui::End();
 }

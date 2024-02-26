@@ -22,6 +22,8 @@ void PM3D_API::Scene::Initialize()
     InitializeLights();
     InitializeObjects();
     InitializeUI();
+
+    PostInitialize();
 }
 
 void PM3D_API::Scene::SetMainCamera(std::unique_ptr<Camera>&& newMainCamera)
