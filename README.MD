@@ -31,4 +31,4 @@ If you have an issue like "Failed to find nvToolsExt", have a look at https://gi
 // TODO
 
 ### Notes
-- I used Eyyu's blog to help me understand how to code the PPO algorithm. You can find the blog post [here](https://medium.com/@eyyu/ppo-part-1-actors-critic-model-1b2c5d1e3d5e).
+- I used Eyyu's blog to help me understand how to code the PPO algorithm. You can find the blog post [here](https://medium.com/@eyyu/coding-ppo-from-scratch-with-pytorch-part-2-4-f9d8b8aa938a).

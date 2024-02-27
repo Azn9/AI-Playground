@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include <vector>
+#include <ATen/core/TensorBody.h>
 
 #include "Trainer.h"
 
@@ -16,17 +17,25 @@ public:
     }
 
     void Learn(int episodes) override;
+    void InitializeRollout();
     void Rollout();
+
+    void Train();
+    void AddReward(float reward) override;
+    void AddActions(const at::Tensor& tensor, double log_prob) override;
 
 private:
     int timestepsPerBatch;
     int epochs;
     int maxTimestepsPerEpisode;
 
-    std::vector<float> batchObservations;
-    std::vector<float> batchActions;
-    std::vector<float> batchLogProbs;
-    std::vector<float> batchRewards;
-    std::vector<float> batchRewardToGo;
-    std::vector<float> batchEpisodicLengths;
+    std::vector<at::Tensor> batchObservations;
+    std::vector<at::Tensor> batchActions;
+    std::vector<at::Tensor> batchLogProbs;
+    std::vector<at::Tensor> batchRewards;
+    std::vector<at::Tensor> batchRewardToGo;
+    std::vector<at::Tensor> batchEpisodicLengths;
+
+    bool trainingRunning = false;
+    int currentTimestep = 0;
 };

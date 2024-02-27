@@ -20,7 +20,7 @@ FeedForwardNNImpl::FeedForwardNNImpl(
     // Create the hidden layers
     for (int i = 0; i < hiddenLayerCount; i++)
     {
-        hiddenLayers.push_back(register_module("hiddenLayer" + std::to_string(i), torch::nn::Linear(hiddenDim, hiddenDim)));
+        hiddenLayers.emplace_back(register_module("hiddenLayer" + std::to_string(i), torch::nn::Linear(hiddenDim, hiddenDim)));
     }
 
     // Create the output layer

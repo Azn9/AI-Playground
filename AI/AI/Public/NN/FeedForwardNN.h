@@ -17,8 +17,8 @@ private:
     int hiddenDim;
     int hiddenLayerCount;
 
-    torch::nn::Linear inputLayer;
-    torch::nn::Linear outputLayer;
+    torch::nn::Linear inputLayer = nullptr;
+    torch::nn::Linear outputLayer = nullptr;
     std::vector<torch::nn::Linear> hiddenLayers;
 };
 

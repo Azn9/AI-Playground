@@ -23,7 +23,7 @@ public:
     virtual void OnEpisodeBegin() = 0;
     virtual void OnEpisodeEnd() = 0;
 
-    void PhysicsUpdate() override;
+    void Train();
     void RegisterAgent(Agent* agent);
 
     void BeginEpisode();

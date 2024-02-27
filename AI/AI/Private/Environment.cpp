@@ -11,6 +11,7 @@
 
 void Environment::Initialize()
 {
+    const auto parentObject = GetParent();
     if (!parentObject)
     {
         throw std::runtime_error("Environment::Initialize: parentObject is nullptr");
@@ -20,7 +21,7 @@ void Environment::Initialize()
     academy->RegisterEnvironment(this);
 }
 
-void Environment::PhysicsUpdate()
+void Environment::Train()
 {
     if (!isEpisodeRunning)
     {

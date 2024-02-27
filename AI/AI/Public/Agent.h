@@ -3,6 +3,7 @@
 #include "Api/Public/Component/Component.h"
 #include "NN/FeedForwardNN.h"
 
+class Trainer;
 class Environment;
 class Outputs;
 class InputGatherer;
@@ -19,20 +20,26 @@ public:
     virtual void GatherInput(InputGatherer* inputGatherer) = 0;
     virtual void ComputeReward(float& reward) = 0;
     virtual void ApplyAction(Outputs* outputs) = 0;
-    
+
     void Think(InputGatherer* inputGatherer, Outputs* outputs);
     void ProcessReward(const float reward);
 
     void SetId(const int id) { this->id = id; }
+    
     void SetEnvironment(Environment* environment) { this->environment = environment; }
+    void SetTrainer(Trainer* trainer) { this->trainer = trainer; }
 
 protected:
     Environment* environment = nullptr;
-    
+    Trainer* trainer = nullptr;
+    at::Tensor covMat;
+    at::Tensor L;
+    at::Tensor Lt;
+
 private:
     int id = -1;
 
     // TODO: For now, we are using a simple feed forward neural network
-    FeedForwardNN actionNetwork;
-    FeedForwardNN criticNetwork;
+    FeedForwardNN actionNetwork = nullptr;
+    FeedForwardNN criticNetwork = nullptr;
 };

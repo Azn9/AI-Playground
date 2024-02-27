@@ -20,7 +20,9 @@ void PM3D::CMoteur::Run()
 
             const double timeElapsed = Time::GetInstance().GetTimeIntervalsInSec(LastUpdateTime, currentTime);
 
-            if (timeElapsed > EcartTemps || shouldStepOneFrameUpdate)
+            const auto timeScale = Time::GetInstance().GetTimeScale();
+
+            if (timeScale > 0.f && (timeElapsed > EcartTemps * (1 / timeScale) || shouldStepOneFrameUpdate))
             {
                 const auto timeElapsedF = static_cast<float>(timeElapsed);
                 if (shouldStepOneFrameUpdate != false)
@@ -30,7 +32,7 @@ void PM3D::CMoteur::Run()
                 }
                 else
                 {
-                    Time::GetInstance().SetUpdateDeltaTime(timeElapsedF * Time::GetInstance().GetTimeScale());
+                    Time::GetInstance().SetUpdateDeltaTime(timeElapsedF * timeScale);
                 }
 
                 Time::GetInstance().SetUpdateDeltaTimeA(timeElapsedF);
@@ -63,8 +65,9 @@ void PM3D::CMoteur::Run()
             }
 
             const double timeElapsed = Time::GetInstance().GetTimeIntervalsInSec(LastFixedUpdateTime, currentTime);
+            const auto timeScale = Time::GetInstance().GetTimeScale();
 
-            if (timeElapsed > FixedEcartTemps || shouldStepOneFramePhysics)
+            if (timeScale > 0 && (timeElapsed > FixedEcartTemps * (1 / timeScale) || shouldStepOneFramePhysics))
             {
                 const auto timeElapsedF = static_cast<float>(timeElapsed);
                 if (shouldStepOneFramePhysics != false)
@@ -75,7 +78,7 @@ void PM3D::CMoteur::Run()
                 }
                 else
                 {
-                    Time::GetInstance().SetPhysicsDeltaTime(timeElapsedF * Time::GetInstance().GetTimeScale());
+                    Time::GetInstance().SetPhysicsDeltaTime(timeElapsedF * timeScale);
                 }
 
                 Time::GetInstance().SetPhysicsDeltaTimeA(timeElapsedF);
