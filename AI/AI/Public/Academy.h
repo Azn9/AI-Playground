@@ -12,6 +12,8 @@ public:
 
     void RegisterEnvironment(Environment* environment);
 
+    void PhysicsUpdate() override;
+
 private:
     std::vector<Environment*> environments;
 };

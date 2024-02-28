@@ -6,6 +6,7 @@
 #include "AI/Public/Agent.h"
 #include "AI/Public/InputGatherer.h"
 #include "AI/Public/Outputs.h"
+#include "AI/Public/Trainer/Trainer.h"
 #include "Api/Public/GameObject/GameObject.h"
 #include "Api/Public/Scene/Scene.h"
 
@@ -19,6 +20,18 @@ void Environment::Initialize()
 
     const auto academy = parentObject->GetScene()->GetComponent<Academy>();
     academy->RegisterEnvironment(this);
+}
+
+void Environment::Tick()
+{
+    for (auto [agent, inout] : agents)
+    {
+        const auto trainer = agent->GetTrainer();
+        if (trainer)
+        {
+            trainer->Tick();
+        }
+    }
 }
 
 void Environment::Train()
@@ -57,18 +70,9 @@ void Environment::Train()
 
 void Environment::RegisterAgent(Agent* agent)
 {
-    int inputCount = 0;
-    int outputCount = 0;
-    agent->Setup(inputCount, outputCount);
-
-    auto inputGatherer = new InputGatherer(inputCount);
-    auto outputs = new Outputs(outputCount);
-
     agent->SetId(nextAgentId);
     
-    agents.push_back({agent, {inputGatherer, outputs}});
-
-    agent->Initialize(inputCount, outputCount);
+    agents.push_back(agent);
 
     std::cout << "Registered agent " << nextAgentId++ << std::endl;
 }

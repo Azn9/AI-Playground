@@ -24,16 +24,19 @@ void Agent::Initialize()
     }
 
     environment->RegisterAgent(this);
-}
 
-void Agent::Initialize(int inputs, int outputs)
-{
+    int inputCount = 0;
+    int outputCount = 0;
+    Setup(inputCount, outputCount);
+
+    inputGatherer = new InputGatherer(inputCount);
+    outputs = new Outputs(outputCount);
+
     // Create NN
-    actionNetwork = FeedForwardNN(inputs, outputs, 256, 3);
-    criticNetwork = FeedForwardNN(inputs, 1, 256, 3);
+    actionNetwork = FeedForwardNN(inputCount, outputCount, 256, 3);
+    criticNetwork = FeedForwardNN(inputCount, 1, 256, 3);
 
-    //
-    const auto covVar = torch::full({outputs}, 0.5f);
+    const auto covVar = torch::full({outputCount}, 0.5f);
     covMat = covVar.diag().to(torch::kCUDA);
 
     L = torch::cholesky(covMat);
@@ -53,7 +56,7 @@ double log_prob(torch::Tensor x, torch::Tensor mu, torch::Tensor L)
     return normConst - 0.5 * logDetSigma + expTerm;
 }
 
-void Agent::Think(InputGatherer* inputGatherer, Outputs* outputs)
+void Agent::Think()
 {
     const auto inputs = inputGatherer->Readll();
 
@@ -74,9 +77,11 @@ void Agent::Think(InputGatherer* inputGatherer, Outputs* outputs)
     outputs->SetValues(std::move(actions));
 
     trainer->AddActions(action, logProb);
-}
 
-void Agent::ProcessReward(const float reward)
-{
+    ApplyAction(outputs);
+
+    float reward = 0.f;
+    ComputeReward(reward);
+
     trainer->AddReward(reward);
 }

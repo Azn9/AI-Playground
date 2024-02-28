@@ -1,4 +1,5 @@
-﻿#pragma once
+﻿
+#pragma once
 #include <vector>
 #include "Api/Public/GameObject/GameObject.h"
 
@@ -28,10 +29,11 @@ public:
 
     void BeginEpisode();
     void EndEpisode();
+    void Tick();
 
 private:
     int nextAgentId = 0;
-    std::vector<std::tuple<Agent*, std::tuple<InputGatherer*, Outputs*>>> agents;
+    std::vector<Agent*> agents;
 
     bool isEpisodeRunning = false;
 };

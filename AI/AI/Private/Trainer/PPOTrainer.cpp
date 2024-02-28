@@ -3,15 +3,11 @@
 #include <stdexcept>
 #include <torch/torch.h>
 
+#include "AI/Public/Agent.h"
 #include "AI/Public/Environment.h"
 
 void PPOTrainer::Learn(int episodes)
 {
-    if (!environment)
-    {
-        throw std::runtime_error("PPOTrainer::Learn: environment is nullptr");
-    }
-
     if (trainingRunning)
     {
         return;
@@ -39,16 +35,33 @@ void PPOTrainer::InitializeRollout()
     //batchEpisodicLengths.resize(??);
 }
 
-void PPOTrainer::Rollout()
+void PPOTrainer::ComputeRewardsToGo()
 {
-    
+    for (int i = batchRewards.size() - 1; i >= 0; --i)
+    {
+        float discountedReward = 0.0f;
+
+        const auto reward = batchRewards[i];
+        
+    }
 }
 
-void PPOTrainer::Train()
+void PPOTrainer::Tick()
 {
     if (!trainingRunning) return;
 
-    
+    currentTimestep++;
+
+    agent->Think();
+
+    if (currentTimestep >= timestepsPerBatch) // TODO: need to add another loop for the episodes
+    {
+        ComputeRewardsToGo();
+
+        // Reset
+        currentTimestep = 0;
+        InitializeRollout();
+    }
 }
 
 void PPOTrainer::AddReward(float reward)

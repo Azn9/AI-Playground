@@ -12,7 +12,6 @@ class Agent : public PM3D_API::Component
 {
 public:
     void Initialize() override;
-    void Initialize(int inputs, int outputs);
 
     virtual void Setup(int& inputCount, int& outputCount) = 0;
     virtual void OnEpisodeBegin() = 0;
@@ -21,17 +20,19 @@ public:
     virtual void ComputeReward(float& reward) = 0;
     virtual void ApplyAction(Outputs* outputs) = 0;
 
-    void Think(InputGatherer* inputGatherer, Outputs* outputs);
-    void ProcessReward(const float reward);
+    void Think();
 
     void SetId(const int id) { this->id = id; }
-    
     void SetEnvironment(Environment* environment) { this->environment = environment; }
     void SetTrainer(Trainer* trainer) { this->trainer = trainer; }
+    Trainer* GetTrainer() { return trainer; }
 
 protected:
     Environment* environment = nullptr;
     Trainer* trainer = nullptr;
+    InputGatherer* inputGatherer = nullptr;
+    Outputs* outputs = nullptr;
+    
     at::Tensor covMat;
     at::Tensor L;
     at::Tensor Lt;
